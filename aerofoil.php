@@ -1,5 +1,16 @@
 <?php
+/*
+aerofoil process file takes the following variables:
+$input_file: Standard DAT file for aerofoil profile
+$output_file: A gcode file for output (currently must exist but be empty)
+$chordA: Chord of the wing at the root
+$chordB: Chord of the wing at tip
+$locA: location of the beginning of the foam on the x axis
+$locB: location of the end on the foam on the x axis
+$machine_minX: location of the left wire anchorpoint on the x axis (maybe negitive)
+$machine_maxX: location of the right wire anchorpoint on the y axis (maybe negative)
 
+*/
 
 function aerofoil_processFile($input_file,$output_file, $chordA, $chordB, $locA, $locB, $machine_minX, $machine_maxX) {
 	$handle = fopen($input_file, "r");
