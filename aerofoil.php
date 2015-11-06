@@ -1,16 +1,30 @@
 <?php
-
 // given a line defined by two points, extend that line to a known point on the x axis and return new co-ordinates
-function extendLineToX($known_point_x, $Ax, $Ay, $Az, $Bx, $By, $Bz) {
-	$t = (($known_point_x - $Ax)/($Bx-$Ax));
-    $new_x = $known_point_x;
-    $new_y = $Ay+$t*($By-$Ay);
-    $new_z = $Az+$t*($Bz-$Az);
+function extendLineToX($known_point_x, &$pointA, &$pointB) {
+	$t = (($known_point_x - $pointA["x"])/($pointB["x"]-$pointA["x"]));
+    
+    $point = array(
+    "x" => $pointA["x"]+$t*($pointB["x"]-$pointA["x"]),
+    "y" => $pointA["y"]+$t*($pointB["y"]-$pointA["y"]),
+    "z" => $pointA["z"]+$t*($pointB["z"]-$pointA["z"]),
+	);
+    return($point);
 
-
-    //echo($t);
-    echo($new_x.','.$new_y.','.$new_z);
 }
 
-extendLineToX(0, 50, 0, 50, 100, 0, 0 ); // call the function
+$pointA = array(
+    "x" => "50",
+    "y" => "0",
+    "z" => "50",
+);
+
+$pointB = array(
+    "x" => "100",
+    "y" => "0",
+    "z" => "0",
+);
+
+
+$newpoint = extendLineToX(0, $pointA, $pointB); // call the function
+var_dump($newpoint)
 ?>
